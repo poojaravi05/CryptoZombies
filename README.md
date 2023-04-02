@@ -27,4 +27,7 @@ Shriya Bannikop (885196238) - shriyabannikop@csu.fullerton.edu
 
 
 ### Project URL
-- https://github.com/Debdyuti-01/CryptoZombies
+- https://github.com/Debdyuti-01/CryptoZombies 
+
+
+Update: New
