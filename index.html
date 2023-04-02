@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head style="display: block;">
+  <meta charset="UTF-8">
+ <div style="width: 500%;display: flex;">
+  <h1 style="margin-right: 50rem"> <title style="display: block; height: max-content;width: max-content;" class="css-3d-text"> Crypto-Zombies</title></h1>
+  <div style="display: inline-block;font-size: 40px;padding-top: 30px;text-decoration: underline;cursor: pointer;margin-right: 40px;" class="css-3d-text" title="Project developed to create a Decentralised App (dApp) Game developed based on Ethereum blockchain. Smart contracts used in this project are the core of this project which is written in Solidity language. The project has an index.html which basically works as a GUI for the dApp. This game is all about Zombies and kitties. Basically user can perform the following functionalities like creating a Zombie, showing zombie,leveling it up and showing kitty. "> About </div>
+  <div style="display: inline-block;font-size: 40px;padding-top: 30px;text-decoration: underline;" class="css-3d-text"> <a style="color: #dde00f !important;" href="https://github.com/Debdyuti-01/CryptoZombies" target="_blank">GitHub</a> </div>
+
+ </div> 
+<link rel="icon" href="favicon.ico">
+  <script language="javascript" type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
+  <script language="javascript" type="text/javascript" src="cryptozombies_abi.js"></script>
+  <link rel="stylesheet" href="button.css">
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/chiller');
+    body {
+      height: 450vh;
+      width: 110vh;
+      background-image: url(images/background.jpeg) ;
+      background-repeat: no-repeat;
+      background-size: contain;
+      overflow: hidden;
+      
+      
+    }
+  </style>
+</head>
+
+<body>
+  <div style="padding-bottom: 12rem;"> 
+  <div id="zombies" id="zombies" style="color: white; text-align: justify;  font-size: 34px;font-family: 'Chiller', sans-serif;" ></div>
+  <!-- <div id="txStatus">
+    <div class="row">
+      <div class="column">
+        <label style="color: white;">Account Address</label>
+        <select id="AccountList" ></select>
+      </div>
+    </div>
+  </div> -->
+  
+  <!-- <div style="width:360px;max-width:100%;" id="gif"><div style="height:0;padding-bottom:56.11%;position:relative;"><iframe width="360" height="202" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameBorder="0" src="https://imgflip.com/embed/1u3u20"></iframe></div><p><a href="https://imgflip.com/gif/1u3u20">via Imgflip</a></p></div> -->
+  
+  
+  <div class="loading"  id="gif" style="display: block;">
+    <img 
+      src="images/1u3u20.gif"
+      alt="" class="loading-png">
+  </div>
+</div>
+  <div id="kittydiv" class="cryptokittyBlock text-center m-1">
+    <img id="my-image" src="images/kitty.jpeg" style="height: 20rem;width: 20rem;padding-left: 35rem;margin-block-start: -200px;">
+  </div>
+
+</div>
+
+  <div class="container">
+
+    <a href="#" class="button button--hoo">
+        <div class="button__wrapper">
+            <span class="showZombieButton btn button__text">Show Zombies</span>
+        </div>
+        <div class="characterBox">
+            <div class="character wakeup">
+                <div class="character__face"></div>
+                <div class="charactor__face2"></div>
+                <div class="charactor__body"></div>
+            </div>
+            <div class="character wakeup">
+                <div class="character__face"></div>
+                <div class="charactor__face2"></div>
+                <div class="charactor__body"></div>
+            </div>
+            <div class="character">
+                <div class="character__face"></div>
+                <div class="charactor__face2"></div>
+                <div class="charactor__body"></div>
+            </div>
+        </div>
+     </a>
+
+     <a href="#" class="button button--piyo">
+      <div class="button__wrapper">
+          <span class="createzombieButton btn button__text">Create Zombie</span>
+      </div>
+      <div class="characterBox">
+          <div class="character wakeup">
+              <div class="character__face"></div>
+          </div>
+          <div class="character wakeup">
+              <div class="character__face"></div>
+          </div>
+          <div class="character">
+              <div class="character__face"></div>
+          </div>
+      </div>
+  </a>
+     
+  <a href="#" class="button button--pen" style="margin-bottom: 80px;">
+    <div class="button__wrapper">
+        <span class="levelupButton btn button__text">Level Up</span>
+    </div>
+    <div class="characterBox">
+        <div class="character wakeup">
+            <div class="character__face"></div>
+            <div class="charactor__face2"></div>
+        </div>
+        <div class="character wakeup">
+            <div class="character__face"></div>
+            <div class="charactor__face2"></div>
+        </div>
+        <div class="character">
+            <div class="character__face"></div>
+            <div class="charactor__face2"></div>
+        </div>
+    </div>
+</a>
+
+<a  href="#" class="button button--hoo" id="kitty" onclick="kittyShow()" style=" --main_color: #cd590f;--sub_color1: #23365d;margin-bottom: 80px;">
+  <div class="button__wrapper">
+      <span class="showZombieButton btn button__text">Show Kitty</span>
+  </div>
+  <div class="characterBox">
+      <div class="character wakeup">
+          <div class="character__face"></div>
+          <div class="charactor__face2"></div>
+          <div class="charactor__body"></div>
+      </div>
+      <div class="character wakeup">
+          <div class="character__face"></div>
+          <div class="charactor__face2"></div>
+          <div class="charactor__body"></div>
+      </div>
+      <div class="character">
+          <div class="character__face"></div>
+          <div class="charactor__face2"></div>
+          <div class="charactor__body"></div>
+      </div>
+  </div>
+</a>
+     
+</div>
+
+
+
+  <!--<button class="showZombieButton">Show Zombies</button>
+  <button class="createzombieButton">Create Zombie</button>
+  <button class="levelupButton">Level Up</button>-->
+
+  <script>
+
+    var cryptoZombies;
+    var userAccount;
+    var cryptoKitties;
+
+    var el = function(id){
+      return document.querySelector(id);
+    };
+    const showZombieButton = document.querySelector('.showZombieButton');
+    const createzombieButton = document.querySelector('.createzombieButton');
+    const levelupButton = document.querySelector('.levelupButton');
+    const cryptokitty = document.querySelector('.cryptokitty');
+
+    //------------TESTING KITTY-----------
+    //$("#show-kitty").click(function () {
+
+      // const showImageButton = document.getElementById("show-kitty");
+      // const myImage = document.getElementById("my-image"); 
+      // showImageButton.addEventListener("click", () => { 
+      //    myImage.style.display = "block"; 
+
+      // });
+      document.getElementById('kittydiv').style.display='none';
+      document.getElementById('zombies').style.display='none';
+
+      
+
+    //  document.getElementById('gif').style.display='block';
+    
+
+    function startApp() {
+	
+      //ZombieOwnership contratc address
+      var cryptoZombiesAddress = "0x325e65d25427FC2E74e5abe6F3d443c44837a47a";
+      cryptoZombies = new web3.eth.Contract(cryptoZombiesABI, cryptoZombiesAddress);
+
+      
+
+      //-----------------TESTING--------------
+
+
+ //the following code from Lesson 6, chapter 5 is obsolete
+ //     var accountInterval = setInterval(function () {
+
+  //      if (web3.eth.accounts[0] !== userAccount) {
+          //userAccount = web3.eth.accounts[0];
+
+     //     getZombiesByOwner(userAccount)
+      //      .then(displayZombies);
+      //  }
+     // }, 100);
+
+
+      cryptoZombies.events.Transfer({ filter: { _to: userAccount } })
+        .on("data", function (event) {
+          let data = event.returnValues;
+          getZombiesByOwner(userAccount).then(displayZombies);
+        }).on("error", console.error);
+    }
+
+    function kittyShow(){
+      document.getElementById('gif').style.display='none';
+      document.getElementById('kittydiv').style.display='block';
+      document.getElementById('zombies').style.display='none';
+
+
+    }
+
+
+
+//     $("#kitty").on('click', function(){ 
+//       document.getElementById('kittydiv').style.display='block';
+//       document.getElementById('zombies').style.display='none';
+
+// });
+
+
+
+
+
+
+
+    // -------------TESTING--------------
+
+    // el("#AccountList").addEventListener("change", function() {
+    //       userAccount = el("#AccountList").value;
+    //       web3js.eth.defaultAccount = userAccount;
+    //       getZombiesByOwner(userAccount)
+    //       .then(displayZombies)
+    //   })
+
+    // el("#transferZombie").addEventListener("click", function() {
+      // console.log("#targetAccount",$("#targetAccount").val())
+      //   console.log("#zombieId",$("#zombieId").val())
+      //   transferZombieTo($("#targetAccount").val(), $("#zombieId").val());
+      //   console.log("#targetAccount",$("#targetAccount").val())
+      //   console.log("#zombieId",$("#zombieId").val())
+
+      // })
+      
+      
+      function prepareAccountList(accounts) {
+        accounts.forEach(address => {
+          AccountList.innerHTML += '<option value="' + address + '">'
+            + address + '</option>';
+        });
+      }
+
+    function refreshTheZombieList() {
+      zombieIds=getZombiesByOwner(userAccount);
+      displayZombies(zombieIds);
+    }
+ // ----------------------------------------
+    function displayZombies(ids) {
+      $("#zombies").empty();
+      for (id of ids) {
+
+        getZombieDetails(id)
+          .then(function (zombie) {
+
+
+            $("#zombies").append(`<div class="zombie">
+              <ul>
+                <li>Name: ${zombie.name}</li>
+                <li>DNA: ${zombie.dna}</li>
+                <li>Level: ${zombie.level}</li>
+                <li>Wins: ${zombie.winCount}</li>
+                <li>Losses: ${zombie.lossCount}</li>
+                <li>Ready Time: ${zombie.readyTime}</li>
+              </ul>
+            </div>`);
+          });
+      }
+
+    }
+
+    function createRandomZombie(name) {
+
+
+      $("#txStatus").text("Creating new zombie on the blockchain. This may take a while...");
+
+      return cryptoZombies.methods.createRandomZombie(name)
+        .send({ from: userAccount })
+        .on("receipt", function (receipt) {
+          $("#txStatus").text("Successfully created " + name + "!");
+
+          getZombiesByOwner(userAccount).then(displayZombies);
+        })
+        .on("error", function (error) {
+
+          $("#txStatus").text(error);
+        });
+        document.getElementById('gif').style.display='block';
+
+    }
+
+    
+
+
+    function feedOnKitty(zombieId, kittyId) {
+      $("#txStatus").text("Eating a kitty. This may take a while...");
+      return cryptoZombies.methods.feedOnKitty(zombieId, kittyId)
+        .send({ from: userAccount })
+        .on("receipt", function (receipt) {
+          $("#txStatus").text("Ate a kitty and spawned a new Zombie!");
+          getZombiesByOwner(userAccount).then(displayZombies);
+        })
+        .on("error", function (error) {
+          $("#txStatus").text(error);
+        });
+    }
+
+    function levelUp(zombieId) {
+      $("#txStatus").text("Leveling up your zombie...");
+      return cryptoZombies.methods.levelUp(zombieId)
+        .send({ from: userAccount, value: web3.utils.toWei("0.001", "ether") })
+        .on("receipt", function (receipt) {
+          $("#txStatus").text("Power overwhelming! Zombie successfully leveled up");
+        })
+        .on("error", function (error) {
+          $("#txStatus").text(error);
+        });
+    }
+
+    function getZombieDetails(id) {
+      return cryptoZombies.methods.zombies(id).call()
+    }
+
+    function zombieToOwner(id) {
+      return cryptoZombies.methods.zombieToOwner(id).call()
+    }
+
+    function getZombiesByOwner(owner) {
+      return cryptoZombies.methods.getZombiesByOwner(owner).call()
+    }
+    function setKittyContractAddress(id) {
+      return cryptoKitties.methods.setKittyContractAddress(id).call()
+    }
+
+    
+
+
+    $("#showkittty").click(function () {
+
+      let apiUrl = "https://api.cryptokitties.co/kitties/" + $("#kn").val()
+      $.get(apiUrl, function (data) {
+        let imgUrl = data.image_url
+        $(".cryptokitty").attr("src", imgUrl);
+
+        
+      })
+    });
+//----------------------------------------------------------------------------
+
+    window.addEventListener('load', async () => {
+    // Modern dapp browsers...
+    if (window.ethereum) {
+        window.web3 = new Web3(ethereum);
+        try {
+            // Request account access if needed
+            const accounts = await ethereum.enable();
+            // Acccounts now exposed
+            userAccount = accounts[0];
+            startApp()
+        } catch (error) {
+            // User denied account access...
+        }
+    }
+    // Legacy dapp browsers...
+    else if (window.web3) {
+        window.web3 = new Web3(web3.currentProvider);
+        // Acccounts always exposed
+        userAccount = web3.eth.accounts[0];
+        startApp()
+    }
+    // Non-dapp browsers...
+    else {
+        console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+    }
+   });
+ 
+   //the following code from Lesson 6, chapter 2 is obsolete
+   //metamask no longer inject web3 since early 2021
+   //window.addEventListener('load', function () {
+
+  //    if (typeof web3 !== 'undefined') {
+   //     web3js = new Web3(web3.currentProvider);
+   //   } else {
+
+    //  }
+
+
+    //  startApp()
+
+  //  }) 
+
+   ethereum.on('accountsChanged', (accounts) => {
+       window.location.reload();
+   });
+
+   ethereum.on('chainChanged', (chainId) => {
+       window.location.reload(); 
+   });  
+
+   createzombieButton.addEventListener('click', () => {
+            console.log("inside create zombie")
+              
+              createRandomZombie(userAccount);
+
+      });
+
+   showZombieButton.addEventListener('click', () => {
+      console.log('zombieshow');
+      document.getElementById('gif').style.display='none';
+      document.getElementById('zombies').style.display='block';
+      document.getElementById('kittydiv').style.display='none';
+
+
+      getZombiesByOwner(userAccount)
+            .then(displayZombies);
+
+    });
+
+    levelupButton.addEventListener('click', () => {
+      getZombiesByOwner(userAccount)
+            .then(levelUp);
+
+    });
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>
